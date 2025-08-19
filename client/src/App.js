@@ -37,7 +37,7 @@ import { ThemeProvider } from './context/ThemeContext';
 function AppContent() {
   const { user, setUser, logout } = useAuth();
   const { theme } = useTheme();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 1024); // Sempre aberto em telas grandes
   const [isLoading, setIsLoading] = useState(true);
 
   // Verificar token na inicialização
@@ -68,6 +68,20 @@ function AppContent() {
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
+  // Listener para redimensionamento da tela
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setSidebarOpen(true);
+      } else {
+        setSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   if (isLoading || authLoading) {
     return (
       <div className="min-h-screen bg-secondary-900 flex items-center justify-center">
@@ -82,7 +96,7 @@ function AppContent() {
       
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       
-      <main className="pt-16 min-h-screen">
+      <main className="pt-16 min-h-screen lg:ml-64">
         <AnimatePresence mode="wait">
           <Routes>
             {/* Rotas públicas */}
