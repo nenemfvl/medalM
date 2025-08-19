@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-secondary-900 text-secondary-100;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+  
+  * {
+    @apply border-secondary-700;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-secondary-700 text-secondary-100 hover:bg-secondary-600 focus:ring-secondary-500;
+  }
+  
+  .btn-outline {
+    @apply btn border border-secondary-600 bg-transparent text-secondary-100 hover:bg-secondary-700 focus:ring-secondary-500;
+  }
+  
+  .btn-ghost {
+    @apply btn text-secondary-300 hover:bg-secondary-800 hover:text-secondary-100;
+  }
+  
+  .btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+  
+  .input {
+    @apply block w-full rounded-lg border border-secondary-600 bg-secondary-800 px-3 py-2 text-secondary-100 placeholder-secondary-400 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500;
+  }
+  
+  .card {
+    @apply rounded-xl border border-secondary-700 bg-secondary-800 p-6 shadow-lg;
+  }
+  
+  .card-hover {
+    @apply card transition-all duration-200 hover:border-secondary-600 hover:bg-secondary-700 hover:shadow-xl;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent;
+  }
+  
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .video-grid {
+    @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5;
+  }
+  
+  .sidebar {
+    @apply fixed left-0 top-0 z-50 h-full w-64 transform bg-secondary-900 border-r border-secondary-700 transition-transform duration-300 ease-in-out;
+  }
+  
+  .sidebar-closed {
+    @apply -translate-x-full;
+  }
+  
+  .sidebar-open {
+    @apply translate-x-0;
+  }
+  
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm;
+  }
+  
+  .modal-content {
+    @apply relative w-full max-w-md transform rounded-2xl bg-secondary-800 p-6 text-left shadow-xl transition-all;
+  }
+  
+  .loading-spinner {
+    @apply animate-spin rounded-full border-2 border-secondary-600 border-t-primary-500;
+  }
+  
+  .fade-in {
+    @apply animate-fade-in;
+  }
+  
+  .slide-up {
+    @apply animate-slide-up;
+  }
+  
+  .scale-in {
+    @apply animate-scale-in;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  .bg-grid {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .bg-dots {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-secondary-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-secondary-500;
+}
+
+/* Video player customizations */
+.video-js {
+  @apply rounded-lg overflow-hidden;
+}
+
+.video-js .vjs-control-bar {
+  @apply bg-gradient-to-t from-black/80 to-transparent;
+}
+
+.video-js .vjs-progress-control .vjs-progress-holder {
+  @apply bg-secondary-700;
+}
+
+.video-js .vjs-play-progress {
+  @apply bg-primary-500;
+}
+
+/* Recording indicator */
+.recording-indicator {
+  @apply absolute top-4 right-4 flex items-center space-x-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.recording-dot {
+  @apply w-2 h-2 bg-white rounded-full animate-pulse;
+}
+
+/* Upload progress */
+.upload-progress {
+  @apply w-full bg-secondary-700 rounded-full h-2;
+}
+
+.upload-progress-bar {
+  @apply bg-primary-500 h-2 rounded-full transition-all duration-300 ease-out;
+}
+
+/* Notification badge */
+.notification-badge {
+  @apply absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center;
+}
+
+/* Game category badges */
+.category-badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.category-action {
+  @apply bg-red-100 text-red-800;
+}
+
+.category-adventure {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.category-rpg {
+  @apply bg-purple-100 text-purple-800;
+}
+
+.category-strategy {
+  @apply bg-green-100 text-green-800;
+}
+
+.category-sports {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.category-racing {
+  @apply bg-orange-100 text-orange-800;
+}
+
+.category-fighting {
+  @apply bg-pink-100 text-pink-800;
+}
+
+.category-puzzle {
+  @apply bg-indigo-100 text-indigo-800;
+}
+
+.category-simulation {
+  @apply bg-teal-100 text-teal-800;
+}
+
+.category-other {
+  @apply bg-gray-100 text-gray-800;
+}
