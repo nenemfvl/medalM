@@ -9,7 +9,7 @@
     "client": "cd client && npm start",
     "build": "cd client && npm run build",
     "install-all": "npm install && cd server && npm install && cd ../client && npm install",
-    "start": "cd server && npm start"
+    "start": "cd client && npm start"
   },
   "keywords": ["gaming", "video", "recording", "medal", "gameplay"],
   "author": "MedalM Team",
