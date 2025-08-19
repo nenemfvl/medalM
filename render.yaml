@@ -1,10 +1,10 @@
 services:
   # Backend API
   - type: web
-    name: medalm-api
+    name: medalM
     env: node
     plan: free
-    buildCommand: cd server && npm install
+    buildCommand: cd server && npm install --production
     startCommand: cd server && npm start
     envVars:
       - key: NODE_ENV
@@ -16,7 +16,7 @@ services:
       - key: JWT_SECRET
         value: medalm_super_secret_key_2024_production
       - key: CORS_ORIGIN
-        value: https://medalm.onrender.com
+        value: https://medalm-client.onrender.com
 
   # Frontend Client
   - type: web
@@ -27,4 +27,4 @@ services:
     staticPublishPath: client/build
     envVars:
       - key: REACT_APP_API_URL
-        value: https://medalm-api.onrender.com
+        value: https://medalm.onrender.com
