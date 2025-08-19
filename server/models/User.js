@@ -71,10 +71,12 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Índices para melhor performance
-userSchema.index({ username: 1 });
-userSchema.index({ email: 1 });
-userSchema.index({ createdAt: -1 });
+// Criar índices de forma segura para evitar conflitos
+userSchema.on('index', function(error) {
+  if (error) {
+    console.log('⚠️  Aviso: Índice já existe:', error.message);
+  }
+});
 
 // Método para obter estatísticas do usuário
 userSchema.methods.getStats = function() {

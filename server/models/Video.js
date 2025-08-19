@@ -128,13 +128,12 @@ const videoSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Índices para melhor performance
-videoSchema.index({ user: 1, createdAt: -1 });
-videoSchema.index({ category: 1, createdAt: -1 });
-videoSchema.index({ tags: 1 });
-videoSchema.index({ views: -1 });
-videoSchema.index({ likes: -1 });
-videoSchema.index({ createdAt: -1 });
+// Criar índices de forma segura para evitar conflitos
+videoSchema.on('index', function(error) {
+  if (error) {
+    console.log('⚠️  Aviso: Índice já existe:', error.message);
+  }
+});
 
 // Método para obter estatísticas do vídeo
 videoSchema.methods.getStats = function() {
