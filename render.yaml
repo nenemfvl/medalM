@@ -15,7 +15,7 @@ services:
         value: mongodb+srv://medalm:medalm123@cluster0.mongodb.net/medalm?retryWrites=true&w=majority
       - key: JWT_SECRET
         value: medalm_super_secret_key_2024_production
-      - key: CORS_ORIGIN
+      - key: CLIENT_URL
         value: https://medalm-client.onrender.com
 
   # Frontend Client
@@ -27,4 +27,4 @@ services:
     staticPublishPath: client/build
     envVars:
       - key: REACT_APP_API_URL
-        value: https://medalm.onrender.com
+        value: https://medalm.onrender.com/api
