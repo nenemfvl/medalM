@@ -8,6 +8,7 @@ const path = require('path');
 const connectDB = require('./config/database');
 require('dotenv').config();
 
+// Forçar redeploy para aplicar variáveis de ambiente
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
