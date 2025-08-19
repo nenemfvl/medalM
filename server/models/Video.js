@@ -125,7 +125,8 @@ const videoSchema = new mongoose.Schema({
     }
   }
 }, {
-  timestamps: true
+  timestamps: true,
+  autoIndex: false // Desabilita criação automática de índices
 });
 
 // Criar índices de forma segura para evitar conflitos
